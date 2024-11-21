@@ -45,7 +45,7 @@ posts = [
 
 def index(request):
     context = {"posts": reversed(posts)}
-    return render(request, 'blog/index.static', context)
+    return render(request, 'blog/index.static', context )
 
 # Детальная страница поста
 def post_detail(request, id):
