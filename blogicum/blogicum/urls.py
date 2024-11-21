@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('blog.urls', 'blog'))),  # Подключение приложения blog
-    path('pages/', include(('pages.urls', 'pages'))),  # Подключение приложения pages
+    path('', include(('blog.urls', 'blog'))),
+    path('pages/', include(('pages.urls', 'pages'))),
 ]
