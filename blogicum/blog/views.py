@@ -47,7 +47,7 @@ posts = [
 
 def index(request):
     context = {"posts": reversed(posts)}
-    return render(request, 'blog/index.static', context)
+    return render(request, 'blog/index.html', context)
 
 
 # Детальная страница поста
@@ -57,10 +57,10 @@ def post_detail(request, id):
     if not post:
         return render(request, '404.html', status=404)  # Если пост не найден
     context = {'post': post}
-    return render(request, 'blog/detail.static', context)
+    return render(request, 'blog/detail.html', context)
 
 
 # Функция для отображения страницы категории
 def category_posts(request, category_slug):
     context = {'category_slug': category_slug}
-    return render(request, 'blog/category.static', context)
+    return render(request, 'blog/category.html', context)
