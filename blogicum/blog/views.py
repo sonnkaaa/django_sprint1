@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 
 
 posts = [
@@ -50,12 +51,14 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 
+posts_dict = {post['id']: post for post in posts}
+
 # Детальная страница поста
-def post_detail(request, id):
-    # Ищем пост по ID
-    post = next((post for post in posts if post['id'] == id), None)
+def post_detail(request, post_id):
+    # Проверяем, существует ли пост с переданным ID
+    post = posts_dict.get(post_id)
     if not post:
-        return render(request, '404.html', status=404)  # Если пост не найден
+        raise Http404(f"Post with id {post_id} not found")
     context = {'post': post}
     return render(request, 'blog/detail.html', context)
 
